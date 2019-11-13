@@ -79,11 +79,14 @@ public class EuroCoinCollection implements java.lang.Iterable<EuroCoin> {
     
     //////////////////////    exercicio 3    ///////////////////////////////////
     @Override
-    public Iterador iterator() {
+    public Iterator<EuroCoin> iterator() {
         iterando +=1;
-        return (Iterador) this;
+        return  Iterador.crearIterador(this);
     }
-    
+
+    protected void finIteracion(){
+    this.iterando = iterando -1;
+}
     
     
 }

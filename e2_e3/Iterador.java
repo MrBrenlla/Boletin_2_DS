@@ -12,26 +12,35 @@ import java.util.*;
  *
  * @author lorudarkuh
  */
-public class Iterador extends EuroCoinCollection implements java.util.Iterator<EuroCoin> {
+public class Iterador implements java.util.Iterator<EuroCoin> {
     private EuroCoin lastCoin;
     private String pais;
     private boolean protect;
+    public EuroCoinCollection coleccion;
     
-    public void crearIterador(Pais pais){
-        this.pais = pais.getCode();
-        this.lastCoin = null;
+
+    public static Iterador crearIterador(EuroCoinCollection col){
+        Iterador i = new Iterador();
+        i.pais = null;
+        i.lastCoin = null;
+        i.coleccion = col;
+        i.protect = true;
+        return i;
     }
     
+    public void setPais(Pais p){
+        this.pais=p.getCode();
+    } 
     @Override
     public boolean hasNext() {
         boolean comp = (lastCoin == null);
-            for (EuroCoin c: coleccion){
+            for (EuroCoin c: coleccion.coleccion){
                 if (comp){
                     if (this.pais == null || c.getPais().equals(this.pais)) {
                         return true;
                     } 
-                    if (c.equals(lastCoin)) comp = true;
                 }
+                else if (c.equals(lastCoin)) comp = true;
             }
             return false;             
     }
@@ -39,32 +48,35 @@ public class Iterador extends EuroCoinCollection implements java.util.Iterator<E
     @Override
     public EuroCoin next() {
         boolean comp = (lastCoin == null);
-            for (EuroCoin c: coleccion){
-                if (comp){
-                    if (this.pais == null || c.getPais().equals(this.pais)) {
-                        lastCoin = c;
-                        protect = false;
-                        //return c;
-                    } 
-                    if (c.equals(lastCoin)) comp = true;
-                }
+        for (EuroCoin c: coleccion.coleccion){
+            if (comp){
+                if (this.pais == null || c.getPais().equals(this.pais)) { 
+                    lastCoin = c;
+                    protect = false;
+                    if (!this.hasNext()) this.coleccion.finIteracion();
+                    return c;
+                } 
             }
-        iterando -=1;
+            else if (c.equals(lastCoin)) comp = true;
+        }
         throw new NoSuchElementException();
     }
 
     @Override
     public void remove() {
         EuroCoin ant = null;
-        if ((!coleccion.isEmpty()) && (!protect)){
-            for (EuroCoin c: coleccion){
+        Object aux = null;
+        if (!protect){
+            for (EuroCoin c: coleccion.coleccion){
                 if (c.equals(lastCoin)) {
-                    coleccion.remove(lastCoin);
+                    aux = (Object) lastCoin;
                     lastCoin = ant;
                     protect = true;
-                } else lastCoin = c;
+                } else ant = c;
             } 
-        } else throw new IllegalStateException();
+            if (protect){ this.coleccion.coleccion.remove(aux);}
+        }
+        else throw new IllegalStateException();
     }
     
     

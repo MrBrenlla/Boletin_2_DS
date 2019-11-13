@@ -8,7 +8,7 @@ package e2_e3;
 
 import java.util.Objects;
 
-public class EuroCoin implements java.lang.Comparable<EuroCoin> {
+public final class EuroCoin implements java.lang.Comparable<EuroCoin> {
     private final Valor valor;
     private final Color color;
     private final Pais pais;
@@ -47,7 +47,9 @@ public class EuroCoin implements java.lang.Comparable<EuroCoin> {
 
     @Override
     public int hashCode() {
-        return 3 * this.valor.getCentimos();
+        int hash = 3;
+        hash= hash* this.valor.getCentimos();
+        return hash;
     }
 
     @Override
