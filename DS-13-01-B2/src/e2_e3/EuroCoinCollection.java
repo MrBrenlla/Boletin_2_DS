@@ -66,12 +66,11 @@ public class EuroCoinCollection implements java.lang.Iterable<EuroCoin> {
 
     }
     
-    public List<EuroCoin> sortComparator(){
+    public List<EuroCoin> sortComparator(Comparator c){
         if (iterando == 0){
         // Creamos unha lista cos elementos do HashSet 
         List<EuroCoin> list = new ArrayList<>(this.coleccion);
-        Comparator comp = new Comparator();
-        Collections.sort(list, comp);
+        Collections.sort(list, c);
         return list;
         } else throw new ConcurrentModificationException();
 

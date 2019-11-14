@@ -1,8 +1,6 @@
 package e2_e3;
 
-import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
-import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 import org.junit.Before;
@@ -20,12 +18,14 @@ public class EuroCoinCollectionTest {
              c1_pt,
              c1_es;
     EuroCoinCollection collection;
+    Comparator c;
     /**
      *
      */
     @Before
     public void setUp() {
         collection = new EuroCoinCollection();
+        c = new Comparator();
         
         // THIS COINS MUST BE PROPERLY CREATED IN ORDER TO THE TEST TO WORK CORRECTLY
         e1_sp1 = new EuroCoin(Valor.EUROS_1,"Juan Carlos I",0,Pais.SPAIN);
@@ -172,7 +172,9 @@ public class EuroCoinCollectionTest {
             collectionE2.insertCoin(e2_sp_2002);
             collectionE2.insertCoin(e1_sp2);
             
-            List<EuroCoin> list1 = collectionE2.sortComparator();
+            
+            
+            List<EuroCoin> list1 = collectionE2.sortComparator(c);
             //for (int i = 0; i<list1.size(); i++) {
             //  System.out.print(list1.get(i).getValor());
             //  System.out.println(list1.get(i).getPais());
@@ -187,7 +189,7 @@ public class EuroCoinCollectionTest {
             collectionT2.insertCoin(c1_pt);
           
             //System.out.println("'''''''''''''''");
-            List<EuroCoin> list2 = collectionT2.sortComparator();
+            List<EuroCoin> list2 = collectionT2.sortComparator(c);
             //for (int i = 0; i<list2.size(); i++) {
             //    System.out.print(list1.get(i).getValor());
             //    System.out.println(list1.get(i).getPais());
@@ -281,7 +283,7 @@ public class EuroCoinCollectionTest {
         EuroCoinCollection collectionE2 = new EuroCoinCollection();
         Iterador i = (Iterador)collectionE2.iterator();
         i.setPais(Pais.SPAIN);
-        collectionE2.sortComparator();
+        collectionE2.sortComparator(c);
             
     }
 }
