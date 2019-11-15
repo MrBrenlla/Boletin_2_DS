@@ -53,12 +53,12 @@ public class Iterador implements java.util.Iterator<EuroCoin> {
                 if (this.pais == null || c.getPais().equals(this.pais)) { 
                     lastCoin = c;
                     protect = false;
-                    if (!this.hasNext()) this.coleccion.finIteracion();
                     return c;
                 } 
             }
             else if (c.equals(lastCoin)) comp = true;
         }
+        this.coleccion.finIteracion();
         throw new NoSuchElementException();
     }
 

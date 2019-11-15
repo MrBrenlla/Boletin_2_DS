@@ -231,7 +231,6 @@ public class EuroCoinCollectionTest {
             assertEquals( e2_sp_2005,i.next());
             assertEquals( e1_sp1,i.next());
             assertEquals(false,i.hasNext());
-            assertEquals(0,i.coleccion.iterando);
             assertEquals(false,collectionE2.hasCoin(c1_es));
     }
     

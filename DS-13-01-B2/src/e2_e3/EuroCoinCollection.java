@@ -73,7 +73,6 @@ public class EuroCoinCollection implements java.lang.Iterable<EuroCoin> {
         Collections.sort(list, c);
         return list;
         } else throw new ConcurrentModificationException();
-
     }
     
     //////////////////////    exercicio 3    ///////////////////////////////////
