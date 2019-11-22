@@ -21,7 +21,8 @@ public final class Reponedor extends Traballador {
         this.telefono = telefono;
         this.seguridadeSocial = seguridadeSocial;
         this.salario = salario;
-        this.turno = turno;
+        if(turno==turno.NOITE) throw new IllegalArgumentException();
+        else this.turno = turno;
     }
     
     public Reponedor(String nome, String apellidos,int seguridadeSocial, int salario, Turno turno,String empresa, String DNI, String direccion) {
@@ -32,7 +33,8 @@ public final class Reponedor extends Traballador {
         this.direccion = direccion;
         this.seguridadeSocial = seguridadeSocial;
         this.salario = salario;
-        this.turno = turno;
+        if(turno==turno.NOITE) throw new IllegalArgumentException();
+        else this.turno = turno;
     }
         
     public Reponedor(String nome, String apellidos,int seguridadeSocial, int salario, Turno turno,String empresa, String DNI, int telefono) {
@@ -43,7 +45,8 @@ public final class Reponedor extends Traballador {
         this.telefono = telefono;
         this.seguridadeSocial = seguridadeSocial;
         this.salario = salario;
-        this.turno = turno;
+        if(turno==turno.NOITE) throw new IllegalArgumentException();
+        else this.turno = turno;
         this.direccion = "Sin direccion";
 
     }
@@ -55,7 +58,8 @@ public final class Reponedor extends Traballador {
         this.DNI = DNI;
         this.seguridadeSocial = seguridadeSocial;
         this.salario = salario;
-        this.turno = turno;
+        if(turno==turno.NOITE) throw new IllegalArgumentException();
+        else this.turno = turno;
         this.direccion = "Sin direccion";
     }
     
